@@ -32,7 +32,11 @@ export default class Parser implements IParser{
   }
 
   parse(str: string): string[] {
-    let normalized = this.normalize(str);
-    return this.splitByWhiteSpace(normalized);
+    if (str && (typeof str === 'string')) {
+      let normalized = this.normalize(str);
+      return this.splitByWhiteSpace(normalized);
+    }else{
+      return []
+    }
   }
 }
