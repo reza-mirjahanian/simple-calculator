@@ -1,0 +1,31 @@
+{
+  "name": "reza-mirjahanian",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src",
+  "scripts": {
+    "build": "tsc",
+    "test-watch": "nodemon --config nodemon.json  -x npm run test",
+    "test": "cross-env NODE_ENV='test' ts-node ./node_modules/mocha/bin/mocha  --ui tdd  --timeout=10000 --exit ./test/**/*.spec.ts",
+    "coverage": "cross-env NODE_ENV='test' node_modules/nyc/bin/nyc.js   npm run test",
+    "test-report": "NODE_ENV='test' node_modules/nyc/bin/nyc.js report -r html node_modules/mocha/bin/mocha  --timeout=10000  --exit  test/**/*.spec.ts && xdg-open ./coverage/index.html >/dev/null 2>&1"
+  },
+  "author": "Reza Mirjahanian",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "2.0.13",
+    "ts-node": "10.2.1",
+    "typescript": "^4.3.5",
+    "chai": "4.3.4",
+    "sinon-chai": "3.7.0",
+    "eslint": "7.30.0",
+    "mocha": "9.0.2",
+    "nyc": "14.1.1",
+    "@types/chai": "4.2.22",
+    "@types/mocha": "9.0.0",
+    "cross-env": "7.0.3"
+  },
+  "dependencies": {
+    "@types/node": "^16.0.0"
+  }
+}
