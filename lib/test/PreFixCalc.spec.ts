@@ -6,8 +6,8 @@ import InfixToPrefix from '../src/InfixToPrefix';
 import PreFixCalc from '../src/PreFixCalc';
 
 
-suite('Testing Parser Class', () => {
-  suite(':parse()', () => {
+suite('Testing PreFixCalc Class', () => {
+  suite(':run()', () => {
     test('should parse string of chars correctly', async () => {
       const parser = new Parser()
       const toPrefix = new InfixToPrefix(parser);
@@ -36,9 +36,24 @@ suite('Testing Parser Class', () => {
 
     });
 
+    test('should throw an error for wrong input.', () => {
+      const parser = new Parser()
+      const toPrefix = new InfixToPrefix(parser);
+      const calc = new PreFixCalc();
+
+      try {
+        let prefix1 = toPrefix.convert('3 2');
+        calc.run(prefix1)
+        expect(false).be.equal(true);
+      } catch (e: unknown) {
+        expect((e as Error).message).be.equal('Invalid Expression')
+      }
+
+
+    });
+
 
   });
-
 
 
 });

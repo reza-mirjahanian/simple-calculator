@@ -11,7 +11,7 @@ export default class PreFixCalc {
         return (num1 / num2)
       }
     }
-    return 0;
+    throw Error('Invalid operator')
   }
 
 
@@ -69,9 +69,10 @@ export default class PreFixCalc {
 
     if (stack.length === 1) {
       return stack[0];
+    }else{
+      throw Error('Invalid Expression')
     }
 
-    return 0;
   }
 
 
