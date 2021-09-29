@@ -26,6 +26,31 @@ suite('Testing Parser Class', () => {
 
     });
 
+    test('should throw an error for wrong input.', () => {
+      const parser = new Parser()
+      try {
+        parser.parse('a + 1 ')
+        expect(false).be.equal(true);
+      } catch (e: unknown) {
+        expect((e as Error).message).be.equal('Invalid chars: a')
+      }
+
+      try {
+        parser.parse('4 + & ')
+        expect(false).be.equal(true);
+      } catch (e: unknown) {
+        expect((e as Error).message).be.equal('Invalid chars: &')
+      }
+
+      try {
+        parser.parse('-]')
+        expect(false).be.equal(true);
+      } catch (e: unknown) {
+        expect((e as Error).message).be.equal('Invalid chars: ]')
+      }
+
+    });
+
 
   });
 

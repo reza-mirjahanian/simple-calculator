@@ -1,6 +1,8 @@
-import { IParser } from "./Types";
+import {
+  IParser
+} from "./Types";
 
-export default class Parser implements IParser{
+export default class Parser implements IParser {
 
   private splitByWhiteSpace(str: string): string[] {
     return str.match(/[\S]+/g) || [];
@@ -23,8 +25,10 @@ export default class Parser implements IParser{
       } else if (char === '-' && str[i + 1] === '(') {
         normalizedStr += ' # ( ';
         i++;
-      } else {
+      } else if ('   1234567890.-'.includes(char)) {
         normalizedStr += char;
+      } else {
+           throw Error('Invalid chars: ' + char );
       }
     }
     normalizedStr = normalizedStr.replace(/([\d|)]\s*)-/g, "$1 - "); //1-1 1 - 1
@@ -35,7 +39,7 @@ export default class Parser implements IParser{
     if (str && (typeof str === 'string')) {
       let normalized = this.normalize(str);
       return this.splitByWhiteSpace(normalized);
-    }else{
+    } else {
       return []
     }
   }
